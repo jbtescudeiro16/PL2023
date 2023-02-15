@@ -2,12 +2,6 @@ from prettytable import PrettyTable
 
 
 
-
-
-
-
-
-
 mydictionar = dict()
 
 def getage(val):
@@ -285,13 +279,12 @@ def parser(name):
         if (k[1] == "F" and  k[5].strip("\n") == "1"):
             mydictionar['FP'].append( tuple)
 
-    # Use a breakpoint in the code line below to debug your script.
+  
     f.close();
 
-   # print(f'TPC1')  # Press Ctrl+F8 to toggle the breakpoint.
+  
 
 
-# Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     opcao =1
 
