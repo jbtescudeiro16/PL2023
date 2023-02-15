@@ -1,10 +1,9 @@
 from prettytable import PrettyTable
 
-# This is a sample Python script.
 
 
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
+
+
 
 
 
@@ -295,9 +294,8 @@ def parser(name):
 # Press the green button in the gutter to run the script.
 if __name__ == '__main__':
     opcao =1
-    parser('PyCharm')
 
-    while (opcao!=3):
+    while (opcao!=4):
         print("-------------------TPC1-A96075--------------------------------")
         print("| 1-> Obter a distribuição da doença por sexo                |")
         print("| 2-> Obter a distribuição da doença por idade               |")
@@ -315,4 +313,4 @@ if __name__ == '__main__':
             break
 
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
