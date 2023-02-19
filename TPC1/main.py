@@ -1,3 +1,5 @@
+from turtle import pd
+
 from prettytable import PrettyTable
 
 
@@ -145,119 +147,7 @@ def calculadistrcolesterol():
     tab.add_rows(table[1:])
     print(tab)
 
-
-
-
-
-
-
-def calculaDistIdade():
-
- doiscincodoisnoveP =0
- treszerotresquatroP=0
- trescincotresnoveP=0
- quatrozeroquatroquatroP=0
- quatrocincoquatronoveP=0
- cincozerocincoquatroP=0
- cincocincocinconoveP=0
- seiszeroseisquatroP=0
- seiscincoseinoveP=0
- setezerosetequatroP=0
- setecincosetenoveP=0
- doiscincodoisnoveI =0
- treszerotresquatroI=0
- trescincotresnoveI=0
- quatrozeroquatroquatroI=0
- quatrocincoquatronoveI=0
- cincozerocincoquatroI=0
- cincocincocinconoveI=0
- seiszeroseisquatroI=0
- seiscincoseinoveI=0
- setezerosetequatroI=0
- setecincosetenoveI=0
- for i in mydictionar:
-     for k in mydictionar[i] :
-        if (i=="MP" or i== "FP"):
-           if (getage(k)>=25 and getage(k)<=29):
-               doiscincodoisnoveP+=1
-           elif (getage(k) >= 30 and getage(k) <= 34):
-               treszerotresquatroP += 1
-           elif (getage(k) >= 35 and getage(k) <= 39):
-               trescincotresnoveP += 1
-           elif (getage(k) >= 40 and getage(k) <= 44):
-               quatrozeroquatroquatroP += 1
-           elif (getage(k) >= 45 and getage(k) <= 49):
-               quatrocincoquatronoveP += 1
-           elif (getage(k) >= 50 and getage(k) <= 54):
-               cincozerocincoquatroP += 1
-           elif (getage(k) >= 55 and getage(k) <= 59):
-               cincocincocinconoveP += 1
-           elif (getage(k) >= 60 and getage(k) <= 64):
-               seiszeroseisquatroP += 1
-           elif (getage(k) >= 65 and getage(k) <= 69):
-               seiscincoseinoveP += 1
-           elif (getage(k) >= 70 and getage(k) <= 74):
-               setezerosetequatroP += 1
-           elif (getage(k) >= 75 and getage(k) <= 79):
-               setecincosetenoveP += 1
-        else:
-            if (getage(k) >= 25 and getage(k) <= 29):
-                doiscincodoisnoveI += 1
-            elif (getage(k) >= 30 and getage(k) <= 34):
-                treszerotresquatroI += 1
-            elif (getage(k) >= 35 and getage(k) <= 39):
-                trescincotresnoveI += 1
-            elif (getage(k) >= 40 and getage(k) <= 44):
-                quatrozeroquatroquatroI += 1
-            elif (getage(k) >= 45 and getage(k) <= 49):
-                quatrocincoquatronoveI += 1
-            elif (getage(k) >= 50 and getage(k) <= 54):
-                cincozerocincoquatroI += 1
-            elif (getage(k) >= 55 and getage(k) <= 59):
-                cincocincocinconoveI += 1
-            elif (getage(k) >= 60 and getage(k) <= 64):
-                seiszeroseisquatroI += 1
-            elif (getage(k) >= 65 and getage(k) <= 69):
-                seiscincoseinoveI += 1
-            elif (getage(k) >= 70 and getage(k) <= 74):
-                setezerosetequatroI += 1
-            elif (getage(k) >= 75 and getage(k) <= 79):
-                setecincosetenoveI += 1
-
- table = [[' ', 'Portador', 'Não Portador'],
-          ["[25,29]", doiscincodoisnoveP, doiscincodoisnoveI],
-          ["[30,34]",treszerotresquatroP, treszerotresquatroI],
-          ["[35,39]", trescincotresnoveP, trescincotresnoveI],
-          ["[40,44]", quatrozeroquatroquatroP, quatrozeroquatroquatroI],
-          ["[45,49]", quatrocincoquatronoveP, quatrocincoquatronoveI],
-          ["[50,54]", cincozerocincoquatroP, cincozerocincoquatroI],
-          ["[55,59]", cincocincocinconoveP, cincocincocinconoveI],
-          ["[60,64]", seiszeroseisquatroP, seiszeroseisquatroI],
-          ["[65,69]", seiscincoseinoveP, seiscincoseinoveI],
-          ["[70,74]", setezerosetequatroP, setezerosetequatroI],
-          ["[75,79]", setecincosetenoveP, setecincosetenoveI],
-          ]
- tab = PrettyTable(table[0])
- tab.add_rows(table[1:])
- print(tab)
-
-
-def calculaDistrsexo():
-
-
-    mp = len(mydictionar["MP"])
-    mi = len(mydictionar["MI"])
-    fp =len(mydictionar["FP"])
-    fi =len(mydictionar["FI"])
-
-
-    table = [[' ', 'Masculino', 'Feminino'], ["Portador ", mp, fp], ["Não Portador ",mi, fi]]
-    tab = PrettyTable(table[0])
-    tab.add_rows(table[1:])
-    print(tab)
-
-
-def parser(name):
+def parser():
 
     #MP=MASCULINO PORTADOR DE DOENÇA
     mydictionar["MP"] = []
@@ -281,13 +171,74 @@ def parser(name):
 
   
     f.close();
+#2time---------------------------------------------
 
-  
+
+
+def sexdist():
+    masc = len(mydictionar["MP"])
+    masc+= len(mydictionar["MI"])
+
+    fem = len(mydictionar["FP"])
+    fem += len(mydictionar["FI"])
+
+    mp = len(mydictionar["MP"])
+    mi = len(mydictionar["MI"])
+    fp = len(mydictionar["FP"])
+    fi = len(mydictionar["FI"])
+
+    table = [[' ', 'Masculino', 'Feminino'], ["Portador ", mp, fp], ["Não Portador ",mi, fi],["TOTAL ",masc, fem]]
+    tab = PrettyTable(table[0])
+    tab.add_rows(table[1:])
+
+    print(tab)
+
+def ageinInterval(value,min,max):
+    if (getage(value)>=min and getage(value)<=max) :
+        return  True
+
+    return False
+
+
+def getpositives(min,max):
+    count = 0
+    for i in mydictionar["FP"]:
+        if ageinInterval((i), min, max):
+            count += 1
+    for i in mydictionar["MP"]:
+        if ageinInterval((i), min, max):
+            count += 1
+    return count
+def getnegatives(min,max):
+    count=0
+    for i in mydictionar["FI"]:
+        if ageinInterval((i),min,max):
+            count+=1
+    for i in mydictionar["MI"]:
+        if ageinInterval((i),min,max):
+            count+=1
+    return count
+
+
+def distidades():
+ min=25
+
+ table = [[' ', 'Portador', 'Não Portador']]
+
+ while (min < 80):
+        table.append([f"[{min},{min + 4}]", getpositives(min, min + 4 ),getnegatives(min, min + 4 )])
+
+        min += 5
+ tab = PrettyTable(table[0])
+ tab.add_rows(table[1:])
+ print(tab)
+
+
 
 
 if __name__ == '__main__':
     opcao =1
-
+    parser()
     while (opcao!=4):
         print("-------------------TPC1-A96075--------------------------------")
         print("| 1-> Obter a distribuição da doença por sexo                |")
@@ -297,9 +248,10 @@ if __name__ == '__main__':
         print("--------------------------------------------------------------")
         opcao = input("Insira a opção que pretende realizar :\n")
         if (opcao =="1") :
-            calculaDistrsexo()
+            sexdist()
         elif (opcao == "2"):
-            calculaDistIdade()
+
+            distidades()
         elif(opcao=="3"):
             calculadistrcolesterol()
         else :
