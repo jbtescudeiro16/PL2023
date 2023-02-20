@@ -62,7 +62,7 @@ def sexdist():
     fp = len(mydictionar["FP"])
     fi = len(mydictionar["FI"])
 
-    table = [[' ', 'Masculino', 'Feminino'], ["Portador ", mp, fp], ["Não Portador ",mi, fi],["TOTAL ",masc, fem]]
+    table = [[' ', 'Masculino', 'Feminino','TOTAL'], ["Portador ", mp, fp,mp+fp], ["Não Portador ",mi, fi,mi+fi],["TOTAL ",masc, fem,""]]
     tab = PrettyTable(table[0])
     tab.add_rows(table[1:])
 
