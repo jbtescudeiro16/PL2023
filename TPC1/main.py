@@ -147,8 +147,8 @@ def distbycolesterol():
  table = [[' ', 'Portador', 'Não Portador']]
 
  while (min < 620):
-     pos += getpositives(min, min + 4)
-     neg += getnegatives(min, min + 4)
+     pos += getpositives(min, min + 9)
+     neg += getnegatives(min, min + 9)
      ## if  not (getpositivesbycolesterol(min, min + 9 )==0 and getnegativesbycolesterol(min, min + 9 )==0 ):
      table.append([f"[{min},{min + 9}]", getpositivesbycolesterol(min, min + 9 ),getnegativesbycolesterol(min, min + 9 )])
 
@@ -167,6 +167,10 @@ if __name__ == '__main__':
         print("| 2-> Obter a distribuição da doença por idade               |")
         print("| 3-> Obter a distribuição da doença por níveis de coleterol |")
         print("| 4->Sair                                                    |")
+
+        print("|------------------------------------------------------------|")
+        print("|Nota:Foram discartados os Registos invalidos nomeadamente   |")
+        print("|os que possuem colesterol , tensão ou batimento a 0         |")
         print("--------------------------------------------------------------")
         opcao = input("Insira a opção que pretende realizar :\n")
         if (opcao =="1") :
