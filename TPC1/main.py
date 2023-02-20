@@ -12,6 +12,7 @@ def getvol(val):
     return int(val[2])
 
 def parser():
+    row =0
     flag=0
     #MP=MASCULINO PORTADOR DE DOENÇA
     mydictionar["MP"] = []
@@ -20,21 +21,30 @@ def parser():
     mydictionar["FI"] = []
     f = open("files/myheart.csv", "r")
     for i in f :
-        k=i.split(",")
-        for aux in k:
-            if not aux :
-             flag =1
+        flag=0
+        if row ==0:
+            row+=1
+        else:
+            row+=1
+            k=i.split(",")
+            if (int (k[0])<=0 or int (k[0])>=120 or int (k[2])==0 or int(k[3])==0 or int(k[4])==0 ):
+                flag=1
+            for aux in k:
+                if not aux :
+                 flag =1
 
-        if (flag==0):
-            tuple = (k[0],k[2],k[3],k[4])
-            if (k[1] == "M" and k[5].strip("\n") =="0"):
-                mydictionar["MI"].append( tuple)
-            if (k[1] == "M" and  k[5].strip("\n") == "1"):
-                mydictionar["MP"].append( tuple)
-            if (k[1] == "F" and k[5].strip("\n") =="0"):
-                mydictionar["FI"].append( tuple)
-            if (k[1] == "F" and  k[5].strip("\n") == "1"):
-                mydictionar['FP'].append( tuple)
+
+
+            if (flag==0):
+                tuple = (k[0],k[2],k[3],k[4])
+                if (k[1] == "M" and k[5].strip("\n") =="0"):
+                    mydictionar["MI"].append( tuple)
+                if (k[1] == "M" and  k[5].strip("\n") == "1"):
+                    mydictionar["MP"].append( tuple)
+                if (k[1] == "F" and k[5].strip("\n") =="0"):
+                    mydictionar["FI"].append( tuple)
+                if (k[1] == "F" and  k[5].strip("\n") == "1"):
+                    mydictionar['FP'].append( tuple)
     f.close();
 #2time---------------------------------------------
 
