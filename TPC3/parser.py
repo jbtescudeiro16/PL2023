@@ -130,8 +130,7 @@ def writeJson():
                 auxiliar[year] = []
                 auxiliar[year].append((x[0], x[1], x[2], x[3], x[4], x[5]))
             num = num + 1
-
-    json.dump(aux,f)
+    json.dump(auxiliar,f)
     k.close()
     f.close()
 
@@ -144,7 +143,6 @@ if __name__ == '__main__':
     print("| 2-> Obter os nomes  mais frequentes por século             |")
     print("| 3-> Obter a frequência de Graus de Parentesco              |")
     print("| 4-> Escrever para um ficheiro JSON                         |")
-    print("| 5->                                                        |")
     print("--------------------------------------------------------------")
     opt=input()
     if opt=="1" :
