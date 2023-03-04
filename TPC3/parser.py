@@ -49,9 +49,10 @@ def namepopular(anobaixo,anocima):
                             contanomes[nome]+=1
                          else:
                             contanomes[nome]=1
-
+                         
                          a=re.findall(r"(?i:[a-z]+$)", posicao[cont])
-
+                         aux = re.sub(r"\(|\)", "", posicao[cont])
+                         b =re.findall( r"( ou)",aux)
 
                          if a !=[]:
                              apelido =a[0]
@@ -59,17 +60,21 @@ def namepopular(anobaixo,anocima):
                                  contaapelidos[apelido]+=1
                              else :
                                  contaapelidos[apelido]=1
-                    cont+=1;
-    """
-    max = 0   
-    for a in contanomes:
+                         if b != []:
+                            aqui =re.split(r" ou",aux)
 
-        if contanomes[a]>max:
-            max=contanomes[a]
-            nameaux=a
-        print("Nome "+a + " , Frequencia "+str(contanomes[a]))
-    print("o max "+str(max) + " Nome "+ nameaux)
-    """
+                            for i in aqui :
+                                last = re.findall(r"(?i:[a-z]+$)", i)
+
+                                for la in last :
+                                    if la in contaapelidos:
+                                        contaapelidos[la] += 1
+                                    else:
+                                        contaapelidos[la] = 1
+
+
+                    cont+=1;
+
     sorted_items = sorted(contanomes.items(), key=lambda x: x[1], reverse=True)
     top_items = sorted_items[:5]
 
@@ -103,13 +108,26 @@ def nomesmaispopulares():
 #acabar os irmaos
 def kinship():
     relacoes=dict()
+
     for i in dicionario:
         for val in dicionario[i]:
-            print(val[5])
+            #print(val[5])
             #a= re.findall(r"(?i:[a-z]+,[pai]{1})",val[5])
-            a = re.findall(r"(?i:[a-z]+,(irmao))",val[5])
+            a = re.findall(r"(?i:[a-z]+,[a-z]+[ ]*[a-z]*[.])",val[5])
             if a!=[] :
-                print(a)
+                i=0;
+                while i<len(a):
+                    aux=a[i].split(",")[1].rstrip('.')
+                    if re.search(r"(?i:(irmao|pai|mae|avo|sobrinho|filho|mae|tio|primo|genro|paterno|neto|materno))", aux):
+                        if aux in relacoes:
+                                relacoes[aux]=relacoes[aux]+1
+                        else: relacoes[aux]=1
+                    i+=1
+
+
+    for chave in relacoes:
+        print("Relação : " + chave + "| Quantidade : "+str(relacoes[chave]))
+
 
 def writeJson():
     auxiliar=dict()
@@ -134,27 +152,35 @@ def writeJson():
     k.close()
     f.close()
 
-
-
-if __name__ == '__main__':
-    aux()
+def menu():
     print("-------------------TPC3-A96075--------------------------------")
     print("| 1-> Obter a frequência de processos por ano                |")
     print("| 2-> Obter os nomes  mais frequentes por século             |")
     print("| 3-> Obter a frequência de Graus de Parentesco              |")
     print("| 4-> Escrever para um ficheiro JSON                         |")
     print("--------------------------------------------------------------")
-    opt=input()
-    if opt=="1" :
+    opt = input()
+    if opt == "1":
         print("Insira o ano que pretende obter:")
-        year =input()
-        print( f"O total de registos no ano de {year} foi :{getregsbyyear(year)}")
-    if opt=="2" :
-         nomesmaispopulares()
-    if opt=="3" :
-         kinship()
-    if opt=="4" :
-         writeJson()
+        year = input()
+        print(f"O total de registos no ano de {year} foi :{getregsbyyear(year)}")
+        menu()
+
+    if opt == "2":
+        nomesmaispopulares()
+        menu()
+    if opt == "3":
+        kinship()
+        menu()
+    if opt == "4":
+        writeJson()
+        menu()
+    else :return
+
+if __name__ == '__main__':
+    aux()
+    menu()
+
 
 
 
