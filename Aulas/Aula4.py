@@ -59,7 +59,8 @@ def nameConverter():
     Apesar de partilharem o mesmo apelido, a Sofia não é da mesma família do famoso
     autor José Rodrigues dos Santos."""
 
-    return re.findall(r"\b([A-Z][\w]+)(\s[A-Z][\w]+)(\s[A-Z][\w]+) ",texto)
+    print (re.sub(r"\s([A-Z]\w+)(\s+[A-Z]\w+|\s+dos?[\s+de])*\s+([A-Z]\w+)*", r" \1 \3", texto))
+
 
 
 def codigos_postais():
@@ -107,9 +108,45 @@ def matricula_valida():
         "12 34 56",  # inválida
         "42-HA BQ"  # válida, mas inválida com o requisito extra
     ]
-    for i in matriculas:
-        padrao1=r"^([A-Z]{2}[ -]{1}[0-9]{2}[ -]{1}[A-Z]{2})$"
+    duasletras=r"[A-Z]{2}"
+    doisnumeros = r"[0-9]{2}"
+    espaço1 = r"[ |-]"
 
+    regex_final =[
+            duasletras+espaço1+doisnumeros+espaço1+duasletras,
+            duasletras+espaço1+duasletras+espaço1+doisnumeros,
+            doisnumeros+espaço1+duasletras+espaço1+duasletras,
+            doisnumeros+espaço1+doisnumeros+espaço1+duasletras,
+            duasletras+espaço1+doisnumeros+espaço1+doisnumeros,
+            doisnumeros+espaço1+duasletras+espaço1+doisnumeros
+        ]
+
+
+    for i in matriculas:
+        print(i)
+        #print("|".join(regex_final))
+        if (re.fullmatch(r"|".join(regex_final),i))!=None:
+             matricua_val.append(i)
+    print(matricua_val)
+
+
+
+
+def preenche_texto(m):
+    print(m)
+    t=input()
+    return (t)
+
+def madlips():
+    texto = """Num lindo dia de [ESTAÇÃO DO ANO], [NOME DE PESSOA] foi passear com o seu [EXPRESSÃO DE PARENTESCO MASCULINA]. 
+    Quando chegaram à [NOME DE LOCAL FEMININO], encontraram um [OBJETO MASCULINO] muito [ADJETIVO MASCULINO].
+    Ficaram muito confusos, pois não conseguiam identificar a função daquilo.
+    Seria para [VERBO INFINITIVO]? Tentaram perguntar a [NOME DE PESSOA FAMOSA], que também não sabia.
+    Desanimados, pegaram no objeto e deixaram-no no [NOME DE LOCAL MASCULINO] mais próximo. 
+    Talvez os [NOME PLURAL MASCULINO] de lá conseguissem encontrar alguma utilidade para aquilo."""
+
+    re.sub(r"\[[^\]]+\]",preenche_texto,texto)
+    print(texto)
 if __name__ == '__main__':
      #print(iso_8601())
      #print(iso_86012())
@@ -117,4 +154,5 @@ if __name__ == '__main__':
      #print(nameConverter())
      #print(codigos_postais())
      #print(expand_abrev())
-     matricula_valida()
+     #matricula_valida()
+     madlips()
